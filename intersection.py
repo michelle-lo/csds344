@@ -88,9 +88,9 @@ def run_intersection():
     draw_traffic_lights()
 
     # North
-    north_red = Light(gray, WIDTH/2, HEIGHT/2 - 140)
+    north_red = Light(gray, WIDTH/2, HEIGHT/2 - 60)
     north_yellow = Light(gray, WIDTH/2, HEIGHT/2 - 100)
-    north_green = Light(gray, WIDTH/2, HEIGHT/2 - 60)
+    north_green = Light(gray, WIDTH/2, HEIGHT/2 - 140)
 
     # South
     south_red = Light(gray, WIDTH/2, HEIGHT/2 + 60)
@@ -98,9 +98,9 @@ def run_intersection():
     south_green = Light(gray, WIDTH/2, HEIGHT/2 + 140)
 
     # West
-    west_red = Light(gray, WIDTH/2 - 140, HEIGHT/2)
+    west_red = Light(gray, WIDTH/2 - 60, HEIGHT/2)
     west_yellow = Light(gray, WIDTH/2 - 100, HEIGHT/2)
-    west_green = Light(gray, WIDTH/2 - 60, HEIGHT/2)
+    west_green = Light(gray, WIDTH/2 - 140, HEIGHT/2)
 
     # East
     east_red = Light(gray, WIDTH/2 + 60, HEIGHT/2)
