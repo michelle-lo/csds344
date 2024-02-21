@@ -24,6 +24,11 @@ gray = (128, 128, 128)
 sidewalk = (100,100,100)
 road = (80,80,80)
 
+# Timings
+go_time = 3000
+yellow_time = 1000
+pedestrian_time = 1000
+
 # Create the window
 window = pygame.display.set_mode((WIDTH, HEIGHT))
 pygame.display.set_caption('Intersection')
@@ -115,14 +120,11 @@ def run_intersection():
     while running:
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
-                running = False 
+                running = False
 
-        if (current == 0): #North and South Green
-            north_green.set_color(green_on)
-            south_green.set_color(green_on)
-
-            north_red.set_color(gray)
-            south_red.set_color(gray)
+        if (current == 0): # All Red
+            north_red.set_color(red_on)
+            south_red.set_color(red_on)
 
             west_red.set_color(red_on)
             east_red.set_color(red_on)
@@ -131,17 +133,43 @@ def run_intersection():
             east_yellow.set_color(gray)
             
             current = 1
-            delay = 900
-        elif (current == 1): #North and South Yellow
+            delay = pedestrian_time
+
+        elif (current == 1): #North and South Green
+            north_green.set_color(green_on)
+            south_green.set_color(green_on)
+
+            north_red.set_color(gray)
+            south_red.set_color(gray)
+
+            current = 2
+            delay = go_time
+
+        elif (current == 2): #North and South Yellow
             north_yellow.set_color(yellow_on)
             south_yellow.set_color(yellow_on)
 
             north_green.set_color(gray)
             south_green.set_color(gray)
 
-            current = 2
-            delay = 300
-        elif (current == 2): #East and West Green
+            current = 3
+            delay = yellow_time
+
+        elif (current == 3): #All Red
+            north_red.set_color(red_on)
+            south_red.set_color(red_on)
+
+            west_red.set_color(red_on)
+            east_red.set_color(red_on)
+
+            north_yellow.set_color(gray)
+            south_yellow.set_color(gray)
+
+            current = 4
+            delay = pedestrian_time
+
+
+        elif (current == 4): #East and West Green
             west_green.set_color(green_on)
             east_green.set_color(green_on)
 
@@ -154,9 +182,9 @@ def run_intersection():
             north_yellow.set_color(gray)
             south_yellow.set_color(gray)
 
-            current = 3
-            delay = 900
-        elif (current == 3): #East and West Yellow
+            current = 5
+            delay = go_time
+        elif (current == 5): #East and West Yellow
             west_yellow.set_color(yellow_on)
             east_yellow.set_color(yellow_on)
 
@@ -164,10 +192,12 @@ def run_intersection():
             east_green.set_color(gray)
 
             current = 0
-            delay = 300
+            delay = yellow_time
         else:
             current = 0
             delay = 300
+
+
         pygame.display.update()            #and show it all
         pygame.time.wait(delay)
         clock.tick(3)
