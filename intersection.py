@@ -84,13 +84,32 @@ def draw_traffic_lights():
     # East
     pygame.draw.rect(window, black, (WIDTH/2 + 40, HEIGHT/2 - 25, 120, 50))
     
+def draw_pedestrian_lights():
+    # southwest vertical
+    pygame.draw.rect(window, green_on, (WIDTH/2 - 225, HEIGHT/2 + 100, 80, 20))
+    # northwest vertical
+    pygame.draw.rect(window, green_on, (WIDTH/2 - 225, HEIGHT/2 - 120, 80, 20))
+    # southeast vertical
+    pygame.draw.rect(window, green_on, (WIDTH/2 + 140, HEIGHT/2 + 100, 80, 20))
+    # northeast vertical
+    pygame.draw.rect(window, green_on, (WIDTH/2 + 140, HEIGHT/2 - 120, 80, 20))
 
+    # northeast horizontal
+    pygame.draw.rect(window, green_on, (WIDTH/2 - 120, HEIGHT/2 - 200, 20, 80))
+    # northwest horizontal
+    pygame.draw.rect(window, green_on, (WIDTH/2 + 100, HEIGHT/2 - 200, 20, 80))
+    # southwest horizontal
+    pygame.draw.rect(window, green_on, (WIDTH/2 - 120, HEIGHT/2 + 120, 20, 80))
+    # southeast horizontal
+    pygame.draw.rect(window, green_on, (WIDTH/2 + 100, HEIGHT/2 + 120, 20, 80))
+    
 
 
 # Run the intersection simulation
 def run_intersection():
     draw_intersection()
     draw_traffic_lights()
+    draw_pedestrian_lights()
 
     # North
     north_red = Light(gray, WIDTH/2, HEIGHT/2 - 60)
