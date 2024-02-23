@@ -84,32 +84,11 @@ def draw_traffic_lights():
     # East
     pygame.draw.rect(window, black, (WIDTH/2 + 40, HEIGHT/2 - 25, 120, 50))
     
-def draw_pedestrian_lights():
-    # southwest vertical
-    pygame.draw.rect(window, green_on, (WIDTH/2 - 225, HEIGHT/2 + 100, 80, 20))
-    # northwest vertical
-    pygame.draw.rect(window, green_on, (WIDTH/2 - 225, HEIGHT/2 - 120, 80, 20))
-    # southeast vertical
-    pygame.draw.rect(window, green_on, (WIDTH/2 + 140, HEIGHT/2 + 100, 80, 20))
-    # northeast vertical
-    pygame.draw.rect(window, green_on, (WIDTH/2 + 140, HEIGHT/2 - 120, 80, 20))
-
-    # northeast horizontal
-    pygame.draw.rect(window, green_on, (WIDTH/2 - 120, HEIGHT/2 - 200, 20, 80))
-    # northwest horizontal
-    pygame.draw.rect(window, green_on, (WIDTH/2 + 100, HEIGHT/2 - 200, 20, 80))
-    # southwest horizontal
-    pygame.draw.rect(window, green_on, (WIDTH/2 - 120, HEIGHT/2 + 120, 20, 80))
-    # southeast horizontal
-    pygame.draw.rect(window, green_on, (WIDTH/2 + 100, HEIGHT/2 + 120, 20, 80))
-    
-
 
 # Run the intersection simulation
 def run_intersection():
     draw_intersection()
     draw_traffic_lights()
-    draw_pedestrian_lights()
 
     # North
     north_red = Light(gray, WIDTH/2, HEIGHT/2 - 60)
@@ -131,7 +110,16 @@ def run_intersection():
     east_yellow = Light(gray, WIDTH/2 + 100, HEIGHT/2)
     east_green = Light(gray, WIDTH/2 + 140, HEIGHT/2)
 
-    pygame.display.update()
+    # Pedestrian Lights
+    southwest_vertical = pygame.Rect(WIDTH/2 - 225, HEIGHT/2 + 100, 80, 20)
+    northwest_vertical = pygame.Rect(WIDTH/2 - 225, HEIGHT/2 - 120, 80, 20)
+    southeast_vertical = pygame.Rect(WIDTH/2 + 140, HEIGHT/2 + 100, 80, 20)
+    northeast_vertical = pygame.Rect(WIDTH/2 + 140, HEIGHT/2 - 120, 80, 20)
+
+    northeast_horizontal = pygame.Rect(WIDTH/2 - 120, HEIGHT/2 - 200, 20, 80)
+    northwest_horizontal = pygame.Rect(WIDTH/2 + 100, HEIGHT/2 - 200, 20, 80)
+    southwest_horizontal = pygame.Rect(WIDTH/2 - 120, HEIGHT/2 + 120, 20, 80)
+    southeast_horizontal = pygame.Rect(WIDTH/2 + 100, HEIGHT/2 + 120, 20, 80)
 
     current = 0
     clock = pygame.time.Clock()
@@ -151,6 +139,15 @@ def run_intersection():
             west_yellow.set_color(gray)
             east_yellow.set_color(gray)
             
+            pygame.draw.rect(window, green_on, southwest_vertical)
+            pygame.draw.rect(window, green_on, northwest_vertical)
+            pygame.draw.rect(window, green_on, southeast_vertical)
+            pygame.draw.rect(window, green_on, northeast_vertical)
+
+            pygame.draw.rect(window, green_on, northeast_horizontal)
+            pygame.draw.rect(window, green_on, northwest_horizontal)
+            pygame.draw.rect(window, green_on, southwest_horizontal)
+            pygame.draw.rect(window, green_on, southeast_horizontal)
             current = 1
             delay = pedestrian_time
 
@@ -161,6 +158,16 @@ def run_intersection():
             north_red.set_color(gray)
             south_red.set_color(gray)
 
+            pygame.draw.rect(window, green_on, southwest_vertical)
+            pygame.draw.rect(window, green_on, northwest_vertical)
+            pygame.draw.rect(window, green_on, southeast_vertical)
+            pygame.draw.rect(window, green_on, northeast_vertical)
+
+            pygame.draw.rect(window, red_on, northeast_horizontal)
+            pygame.draw.rect(window, red_on, northwest_horizontal)
+            pygame.draw.rect(window, red_on, southwest_horizontal)
+            pygame.draw.rect(window, red_on, southeast_horizontal)
+
             current = 2
             delay = go_time
 
@@ -170,6 +177,17 @@ def run_intersection():
 
             north_green.set_color(gray)
             south_green.set_color(gray)
+
+            # consider adding timer?
+            pygame.draw.rect(window, green_on, southwest_vertical)
+            pygame.draw.rect(window, green_on, northwest_vertical)
+            pygame.draw.rect(window, green_on, southeast_vertical)
+            pygame.draw.rect(window, green_on, northeast_vertical)
+
+            pygame.draw.rect(window, red_on, northeast_horizontal)
+            pygame.draw.rect(window, red_on, northwest_horizontal)
+            pygame.draw.rect(window, red_on, southwest_horizontal)
+            pygame.draw.rect(window, red_on, southeast_horizontal)
 
             current = 3
             delay = yellow_time
@@ -183,6 +201,16 @@ def run_intersection():
 
             north_yellow.set_color(gray)
             south_yellow.set_color(gray)
+
+            pygame.draw.rect(window, green_on, southwest_vertical)
+            pygame.draw.rect(window, green_on, northwest_vertical)
+            pygame.draw.rect(window, green_on, southeast_vertical)
+            pygame.draw.rect(window, green_on, northeast_vertical)
+
+            pygame.draw.rect(window, green_on, northeast_horizontal)
+            pygame.draw.rect(window, green_on, northwest_horizontal)
+            pygame.draw.rect(window, green_on, southwest_horizontal)
+            pygame.draw.rect(window, green_on, southeast_horizontal)
 
             current = 4
             delay = pedestrian_time
@@ -201,6 +229,16 @@ def run_intersection():
             north_yellow.set_color(gray)
             south_yellow.set_color(gray)
 
+            pygame.draw.rect(window, red_on, southwest_vertical)
+            pygame.draw.rect(window, red_on, northwest_vertical)
+            pygame.draw.rect(window, red_on, southeast_vertical)
+            pygame.draw.rect(window, red_on, northeast_vertical)
+
+            pygame.draw.rect(window, green_on, northeast_horizontal)
+            pygame.draw.rect(window, green_on, northwest_horizontal)
+            pygame.draw.rect(window, green_on, southwest_horizontal)
+            pygame.draw.rect(window, green_on, southeast_horizontal)
+
             current = 5
             delay = go_time
         elif (current == 5): #East and West Yellow
@@ -210,6 +248,15 @@ def run_intersection():
             west_green.set_color(gray)
             east_green.set_color(gray)
 
+            pygame.draw.rect(window, red_on, southwest_vertical)
+            pygame.draw.rect(window, red_on, northwest_vertical)
+            pygame.draw.rect(window, red_on, southeast_vertical)
+            pygame.draw.rect(window, red_on, northeast_vertical)
+
+            pygame.draw.rect(window, green_on, northeast_horizontal)
+            pygame.draw.rect(window, green_on, northwest_horizontal)
+            pygame.draw.rect(window, green_on, southwest_horizontal)
+            pygame.draw.rect(window, green_on, southeast_horizontal)
             current = 0
             delay = yellow_time
         else:
