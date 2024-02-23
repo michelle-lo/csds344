@@ -48,16 +48,55 @@ class Light:
     def draw(self):
         pygame.draw.circle(window, self.color, (self.x, self.y), self.radius)
 
+def draw_dotted_line(start, end, width = 2, dash_length = 10):
+    x1, y1 = start
+    x2, y2 = end
+    
+
+    if(x1 == x2):
+        sliced = abs(y1 - y2)%dash_length
+        ycoord = [y for y in range(int(y1),int(y2), int(dash_length)  if y1 < y2 else int(-dash_length))]
+        xcoord = [x1]*len(ycoord)
+    elif(y1 == y2):
+        xcoord = [x for x in range(int(x1),int(x2), int(dash_length) if x1 < x2 else int(-dash_length))]
+        ycoord = [y1]*len(xcoord)
+
+    next_coord = list(zip(xcoord[1::2],ycoord[1::2]))
+    last_coord = list(zip(xcoord[1::2],ycoord[1::2]))
+    for (x1, y1), (x2, y2) in zip(next_coord, last_coord):
+        pygame.draw.line(window, white, (round(x1), round(y1)), (round(x2), round(y2)), width)
+
 # Create the intersection
 def draw_intersection():
     window.fill((128,128,128))
     # Draw the intersection
     pygame.draw.rect(window, road, (WIDTH/2 - 100, 0, 200, HEIGHT))
     pygame.draw.rect(window, road, (0, HEIGHT/2 - 100, WIDTH, 200))
-    pygame.draw.lines(window, white, False, [(WIDTH/2, 0), (WIDTH/2, HEIGHT/2 - 100)], 2)
-    pygame.draw.lines(window, white, False, [(WIDTH/2, HEIGHT), (WIDTH/2, HEIGHT/2 + 100)], 2)
-    pygame.draw.lines(window, white, False, [(0, HEIGHT/2), (WIDTH/2 - 100, HEIGHT/2)], 2)
-    pygame.draw.lines(window, white, False, [(WIDTH, HEIGHT/2), (WIDTH/2 + 100, HEIGHT/2)], 2)
+
+    pygame.draw.lines(window, white, False, [(WIDTH/2 + 30, 0), (WIDTH/2 + 30, HEIGHT/2 - 100)], 2) # Top
+    pygame.draw.lines(window, white, False, [(WIDTH/2 - 30, HEIGHT), (WIDTH/2 - 30, HEIGHT/2 + 100)], 2) # Bottom
+    pygame.draw.lines(window, white, False, [(0, HEIGHT/2 - 30), (WIDTH/2 - 100, HEIGHT/2 - 30)], 2) # Left
+    pygame.draw.lines(window, white, False, [(WIDTH, HEIGHT/2 + 30), (WIDTH/2 + 100, HEIGHT/2 + 30)], 2) # Right
+
+    draw_dotted_line((WIDTH/2 - 30, 0), (WIDTH/2 - 30, HEIGHT/2 - 100)) #Top
+    draw_dotted_line((WIDTH/2 + 30, HEIGHT), (WIDTH/2 + 30, HEIGHT/2 + 100)) #Bottom
+    draw_dotted_line((0, HEIGHT/2 + 30), (WIDTH/2 - 100, HEIGHT/2 + 30)) #Left
+    draw_dotted_line((WIDTH, HEIGHT/2 - 30), (WIDTH/2 + 100, HEIGHT/2 - 30)) # Right
+
+    x_shift =  WIDTH/2 - 250 
+    y_shift = HEIGHT/2 - 10
+    xs2 =  WIDTH/2 + 10
+    ys2 = HEIGHT/2 - 250
+    xs3 =  WIDTH/2 + 250
+    ys3 = HEIGHT/2 +10
+    xs4 =  WIDTH/2 - 10
+    ys4 = HEIGHT/2 + 250
+
+    #Arrows
+    pygame.draw.polygon(window, white, ((0+x_shift, 20+y_shift), (0+x_shift, 30+y_shift), (30+x_shift, 30+y_shift), (30+x_shift, 10+y_shift), (40+x_shift, 10+y_shift), (25+x_shift, 0+y_shift), (10+x_shift, 10+y_shift), (20+x_shift, 10+y_shift), (20+x_shift, 20+y_shift)))
+    pygame.draw.polygon(window, white, ((-20+xs2, 0+ys2), (-30+xs2, 0+ys2), (-30+xs2, 30+ys2), (-10+xs2, 30+ys2), (-10+xs2, 40+ys2), (0+xs2, 25+ys2), (-10+xs2, 10+ys2), (-10+xs2, 20+ys2), (-20+xs2, 20+ys2)))
+    pygame.draw.polygon(window, white, ((0+xs3, -20+ys3), (0+xs3, -30+ys3), (-30+xs3, -30+ys3), (-30+xs3, -10+ys3), (-40+xs3, -10+ys3), (-25+xs3, 0+ys3), (-10+xs3, -10+ys3), (-20+xs3, -10+ys3), (-20+xs3, -20+ys3)))
+    pygame.draw.polygon(window, white, ((20+xs4, 0+ys4), (30+xs4, 0+ys4), (30+xs4, -30+ys4), (10+xs4, -30+ys4), (10+xs4, -40+ys4), (0+xs4, -25+ys4), (10+xs4, -10+ys4), (10+xs4, -20+ys4), (20+xs4, -20+ys4)))
 
     # Draw sidewalks
     pygame.draw.rect(window, sidewalk, (WIDTH/2 - 200, 0, 100, HEIGHT/2 - 100))
@@ -68,7 +107,6 @@ def draw_intersection():
     pygame.draw.rect(window, sidewalk, (WIDTH/2 - 200, HEIGHT/2 + 100, 100, HEIGHT/2 - 100))
     pygame.draw.rect(window, sidewalk, (WIDTH/2 + 100, HEIGHT/2 + 100, 100, HEIGHT/2 - 100))
     pygame.draw.rect(window, sidewalk, (WIDTH/2 + 100, HEIGHT/2 + 100, WIDTH/2 -100 , 100))
-
 
 
 # Draw the traffic lights (one on each side of the intersection)
