@@ -3,6 +3,7 @@ Creating a top down visual represetaion of the traffic lights in a 4 way interse
 Includes both traffic lights, pedestrian lights, as well as cars represented as arrows.
 '''
 import pygame
+import time
 
 pygame.init()
 
@@ -25,9 +26,9 @@ sidewalk = (100,100,100)
 road = (80,80,80)
 
 # Timings
-go_time = 3000
-yellow_time = 1000
-pedestrian_time = 1000
+go_time = 6000 #3000
+yellow_time = 2000 #1000
+pedestrian_time = 2000 #1000
 
 # Create the window
 window = pygame.display.set_mode((WIDTH, HEIGHT))
@@ -150,6 +151,7 @@ def run_intersection():
 
     current = 0
     clock = pygame.time.Clock()
+    flash_red = True
     running = True
     while running:
         for event in pygame.event.get():
@@ -227,14 +229,31 @@ def run_intersection():
             south_back_green.set_color(gray)
 
             # consider adding timer?
-            pygame.draw.rect(window, yellow_on, southwest_vertical)
-            pygame.draw.rect(window, yellow_on, northwest_vertical)
-            pygame.draw.rect(window, yellow_on, southeast_vertical)
-            pygame.draw.rect(window, yellow_on, northeast_vertical)
+            delay = yellow_time
+            recorded_time =  pygame.time.get_ticks()
+            end_time = recorded_time + delay
+        
+            while (recorded_time <= end_time):
+                flash_red = not flash_red
 
+                if flash_red:
+                    pygame.draw.rect(window, red_on, southwest_vertical)
+                    pygame.draw.rect(window, red_on, northwest_vertical)
+                    pygame.draw.rect(window, red_on, southeast_vertical)
+                    pygame.draw.rect(window, red_on, northeast_vertical)
+                else:
+                    pygame.draw.rect(window, black, southwest_vertical)
+                    pygame.draw.rect(window, black, northwest_vertical)
+                    pygame.draw.rect(window, black, southeast_vertical)
+                    pygame.draw.rect(window, black, northeast_vertical)
+
+                pygame.display.update()
+                recorded_time =  pygame.time.get_ticks()
+                pygame.time.wait(300)
+                
+            delay = 0
 
             current = 3
-            delay = yellow_time
 
         elif (current == 3): #All Red
             north_red.set_color(red_on)
@@ -319,12 +338,30 @@ def run_intersection():
             west_back_green.set_color(gray)
             east_back_green.set_color(gray)
 
-            pygame.draw.rect(window, yellow_on, northeast_horizontal)
-            pygame.draw.rect(window, yellow_on, northwest_horizontal)
-            pygame.draw.rect(window, yellow_on, southwest_horizontal)
-            pygame.draw.rect(window, yellow_on, southeast_horizontal)
-            current = 0
             delay = yellow_time
+            recorded_time =  pygame.time.get_ticks()
+            end_time = recorded_time + delay
+        
+            while (recorded_time <= end_time):
+                flash_red = not flash_red
+
+                if flash_red:
+                    pygame.draw.rect(window, red_on, northeast_horizontal)
+                    pygame.draw.rect(window, red_on, northwest_horizontal)
+                    pygame.draw.rect(window, red_on, southwest_horizontal)
+                    pygame.draw.rect(window, red_on, southeast_horizontal)
+                else:
+                    pygame.draw.rect(window, black, northeast_horizontal)
+                    pygame.draw.rect(window, black, northwest_horizontal)
+                    pygame.draw.rect(window, black, southwest_horizontal)
+                    pygame.draw.rect(window, black, southeast_horizontal)
+
+                pygame.display.update()
+                recorded_time =  pygame.time.get_ticks()
+                pygame.time.wait(300)
+                
+            delay = 0
+            current = 0
         else:
             current = 0
             delay = 300
