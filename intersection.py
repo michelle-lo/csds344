@@ -30,6 +30,7 @@ go_time = 6000 #3000
 yellow_time = 2000 #1000
 pedestrian_time = 2000 #1000
 turn_time = 3000
+flash_time = 1000
 
 # Create the window
 window = pygame.display.set_mode((WIDTH, HEIGHT))
@@ -225,6 +226,11 @@ def run_intersection():
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 running = False
+            if event.type == pygame.MOUSEBUTTONDOWN:
+                if current == -1:
+                    current = 0
+                else:
+                    current = -1
 
         if (current == 0): # All Red
             north_red.set_color(red_on)
@@ -499,8 +505,60 @@ def run_intersection():
             delay = 0
             current = 0
         else:
-            current = 0
-            delay = 300
+            # Invalid state, so flash red
+
+            # Initialize lights to gray
+            north_back_yellow.set_color(gray)
+            south_back_yellow.set_color(gray)
+            west_back_yellow.set_color(gray)
+            east_back_yellow.set_color(gray)
+            north_yellow.set_color(gray)
+            south_yellow.set_color(gray)
+            west_yellow.set_color(gray)
+            east_yellow.set_color(gray)
+
+            north_back_green.set_color(gray)
+            south_back_green.set_color(gray)
+            west_back_green.set_color(gray)
+            east_back_green.set_color(gray)
+            north_green.set_color(gray)
+            south_green.set_color(gray)
+            west_green.set_color(gray)
+            east_green.set_color(gray)
+
+            # Pedestrian Lights
+            pygame.draw.rect(window, black, southwest_vertical)
+            pygame.draw.rect(window, black, northwest_vertical)
+            pygame.draw.rect(window, black, southeast_vertical)
+            pygame.draw.rect(window, black, northeast_vertical)
+
+            pygame.draw.rect(window, black, northeast_horizontal)
+            pygame.draw.rect(window, black, northwest_horizontal)
+            pygame.draw.rect(window, black, southwest_horizontal)
+            pygame.draw.rect(window, black, southeast_horizontal)
+
+
+            if (north_back_red.color == red_on):
+                north_back_red.set_color(gray)
+                south_back_red.set_color(gray)
+                west_back_red.set_color(gray)
+                east_back_red.set_color(gray)
+                north_red.set_color(gray)
+                south_red.set_color(gray)
+                west_red.set_color(gray)
+                east_red.set_color(gray)
+            else:
+                north_back_red.set_color(red_on)
+                south_back_red.set_color(red_on)
+                west_back_red.set_color(red_on)
+                east_back_red.set_color(red_on)
+                north_red.set_color(red_on)
+                south_red.set_color(red_on)
+                west_red.set_color(red_on)
+                east_red.set_color(red_on)
+
+            delay = flash_time
+
 
 
         pygame.display.update()            #and show it all
