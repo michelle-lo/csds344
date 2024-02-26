@@ -248,8 +248,8 @@ def run_intersection():
             west_red.set_color(red_on)
             east_red.set_color(red_on)
             xs1 = WIDTH/2 - 75
-            ys1 = HEIGHT/2 - 15
-            pygame.draw.polygon(window, black, ((10+xs1,0+ys1),(20+xs1,0+ys1),(20+xs1,20+ys1),(25+xs1,20+ys1),(15+xs1,30+ys1),(5+xs1,20+ys1),(10+xs1,20+ys1)))
+            ys1 = HEIGHT/2 + 14
+            pygame.draw.polygon(window, black, ((10+xs1,0+ys1),(20+xs1,0+ys1),(20+xs1,-20+ys1),(25+xs1,-20+ys1),(15+xs1,-30+ys1),(5+xs1,-20+ys1),(10+xs1,-20+ys1)))
             xs1 = WIDTH/2 + 75
             ys1 = HEIGHT/2 - 15
             pygame.draw.polygon(window, black, ((-10+xs1,0+ys1),(-20+xs1,0+ys1),(-20+xs1,20+ys1),(-25+xs1,20+ys1),(-15+xs1,30+ys1),(-5+xs1,20+ys1),(-10+xs1,20+ys1)))
@@ -407,8 +407,8 @@ def run_intersection():
             east_red.set_color(gray)
             west_red.set_color(gray)
             xs1 = WIDTH/2 - 75 - 40 - 40
-            ys1 = HEIGHT/2 - 15
-            pygame.draw.polygon(window, black, ((10+xs1,0+ys1),(20+xs1,0+ys1),(20+xs1,20+ys1),(25+xs1,20+ys1),(15+xs1,30+ys1),(5+xs1,20+ys1),(10+xs1,20+ys1)))
+            ys1 = HEIGHT/2 +14
+            pygame.draw.polygon(window, black, ((10+xs1,0+ys1),(20+xs1,0+ys1),(20+xs1,-20+ys1),(25+xs1,-20+ys1),(15+xs1,-30+ys1),(5+xs1,-20+ys1),(10+xs1,-20+ys1)))
             xs1 = WIDTH/2 + 75 + 40 + 40
             ys1 = HEIGHT/2 - 15
             pygame.draw.polygon(window, black, ((-10+xs1,0+ys1),(-20+xs1,0+ys1),(-20+xs1,20+ys1),(-25+xs1,20+ys1),(-15+xs1,30+ys1),(-5+xs1,20+ys1),(-10+xs1,20+ys1)))
@@ -422,8 +422,8 @@ def run_intersection():
             east_yellow.set_color(yellow_on)
             west_yellow.set_color(yellow_on)
             xs1 = WIDTH/2 - 75 - 40
-            ys1 = HEIGHT/2 - 15
-            pygame.draw.polygon(window, black, ((10+xs1,0+ys1),(20+xs1,0+ys1),(20+xs1,20+ys1),(25+xs1,20+ys1),(15+xs1,30+ys1),(5+xs1,20+ys1),(10+xs1,20+ys1)))
+            ys1 = HEIGHT/2 +14
+            pygame.draw.polygon(window, black, ((10+xs1,0+ys1),(20+xs1,0+ys1),(20+xs1,-20+ys1),(25+xs1,-20+ys1),(15+xs1,-30+ys1),(5+xs1,-20+ys1),(10+xs1,-20+ys1)))
             xs1 = WIDTH/2 + 75 + 40
             ys1 = HEIGHT/2 - 15
             pygame.draw.polygon(window, black, ((-10+xs1,0+ys1),(-20+xs1,0+ys1),(-20+xs1,20+ys1),(-25+xs1,20+ys1),(-15+xs1,30+ys1),(-5+xs1,20+ys1),(-10+xs1,20+ys1)))
@@ -437,8 +437,8 @@ def run_intersection():
             east_red.set_color(red_on)
             west_red.set_color(red_on)
             xs1 = WIDTH/2 - 75
-            ys1 = HEIGHT/2 - 15
-            pygame.draw.polygon(window, black, ((10+xs1,0+ys1),(20+xs1,0+ys1),(20+xs1,20+ys1),(25+xs1,20+ys1),(15+xs1,30+ys1),(5+xs1,20+ys1),(10+xs1,20+ys1)))
+            ys1 = HEIGHT/2 +14
+            pygame.draw.polygon(window, black, ((10+xs1,0+ys1),(20+xs1,0+ys1),(20+xs1,-20+ys1),(25+xs1,-20+ys1),(15+xs1,-30+ys1),(5+xs1,-20+ys1),(10+xs1,-20+ys1)))
             xs1 = WIDTH/2 + 75
             ys1 = HEIGHT/2 - 15
             pygame.draw.polygon(window, black, ((-10+xs1,0+ys1),(-20+xs1,0+ys1),(-20+xs1,20+ys1),(-25+xs1,20+ys1),(-15+xs1,30+ys1),(-5+xs1,20+ys1),(-10+xs1,20+ys1)))
@@ -556,6 +556,20 @@ def run_intersection():
                 south_red.set_color(red_on)
                 west_red.set_color(red_on)
                 east_red.set_color(red_on)
+                xs1 = WIDTH/2 - 15
+                ys1 = HEIGHT/2 - 75
+                pygame.draw.polygon(window, black, ((0+xs1,10+ys1),(0+xs1,20+ys1),(20+xs1,20+ys1),(20+xs1,25+ys1),(30+xs1,15+ys1),(20+xs1,5+ys1),(20+xs1,10+ys1)))
+                xs1 = WIDTH/2 + 14
+                ys1 = HEIGHT/2 + 45
+                pygame.draw.polygon(window, black, ((0+xs1,10+ys1),(0+xs1,20+ys1),(-20+xs1,20+ys1),(-20+xs1,25+ys1),(-30+xs1,15+ys1),(-20+xs1,5+ys1),(-20+xs1,10+ys1)))
+                xs1 = WIDTH/2 - 75
+                ys1 = HEIGHT/2 + 14
+                pygame.draw.polygon(window, black, ((10+xs1,0+ys1),(20+xs1,0+ys1),(20+xs1,-20+ys1),(25+xs1,-20+ys1),(15+xs1,-30+ys1),(5+xs1,-20+ys1),(10+xs1,-20+ys1)))
+                xs1 = WIDTH/2 + 75
+                ys1 = HEIGHT/2 - 15
+                pygame.draw.polygon(window, black, ((-10+xs1,0+ys1),(-20+xs1,0+ys1),(-20+xs1,20+ys1),(-25+xs1,20+ys1),(-15+xs1,30+ys1),(-5+xs1,20+ys1),(-10+xs1,20+ys1)))
+
+                
 
             delay = flash_time
 
